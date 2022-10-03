@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for loop</title>
+</head>
+<body>
+    <h2>
+        Javascript For loop
+    </h2>
+    <p>
+        <button id="addRow" onclick="appendRow()">Rows +</button>
+        <button id="addColum" onclick="appendColumn()">Colums +</button>
+    </p>
+    <script>
+        function appendRow() {
+            var tbl = document.getElementById('table'), 
+            row = tbl.insertRow(tbl.rows.length);
+            for (let i = 0; i < tbl.rows[0].cells.length; i++) {
+                createCell(row.insertCell(i), 'r'+i);
+            }
+        }
+        function appendColumn() {
+            var tbl = document.getElementById('table');
+            for (let i = 0; i < tbl.rows.length; i++) {
+                createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), 'c'+i);
+            }
+        }
+        function createCell(cell, text) {
+            var div = document.createElement('input'), 
+            txt = document.createTextNode(text); 
+            div.appendChild(txt);                    
+            cell.appendChild(div);       
+        }
+        
+        </script>
+    <table id="table" border="2px solid">
+        <tr>
+            <td>0</td>
+        </tr>
+    </table>
+</body>
+</html>
