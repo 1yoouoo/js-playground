@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for loop</title>
+</head>
+<body>
+    <h2>
+        Javascript For loop
+    </h2>
+    <p>
+        <button id="addRow" onclick="appendRow()">Rows +</button>
+        <button id="addColum" onclick="appendColumn()">Colums +</button>
+    </p>
+    <table id="table" border="2px solid"> 
+    </table>
+    <script>
+        rows = [['hi']]
+        rowCnt = 1;
+        colCnt = 1;
+        function appendRow() {
+            rowCnt++;
+            cell=[]
+            for(let i=0;i<colCnt;i++) {
+                cell.push('row');
+            }
+            rows.push(cell)
+            refresh();
+        }
+        function appendColumn() {
+            colCnt++;
+            for(let i=0; i<rowCnt; i++) {
+                rows[i].push('col')
+            }
+            refresh();
+        }
+        function refresh() {
+            removeTable();
+            createTable();
+        }
+        function removeTable() {
+            let table = document.getElementById('table');
+            table.innerHTML=''
+        }
+        function createTable() {
+            let table = document.getElementById('table');
+            for (row = 0; row < rows.length; row ++) {
+                let tr = table.insertRow();
+                for (col = 0; col < rows[row].length; col++){
+                    let td = tr.insertCell();
+                    let div = document.createElement('div');
+                    div.innerHTML=row + '-' + col
+
+                    td.appendChild(div)
+                }
+            }
+        }
+        refresh();
+    </script>
+</body>
+</html>
